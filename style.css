@@ -1,3 +1,7 @@
+:root {
+    --font: "Roboto Mono", monospace;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,14 +9,47 @@
 }
 
 body {
-    min-width: 100vh;
+    min-height: 100vh;
     background-color: #050505;
     background-image: 
         linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px), 
         linear-gradient(90deg, rgba(0, 191, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
+    font-family: var(--font);
 }
 
-.banner {
-    
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    margin: 5px;
+}
+
+.logo h1 {
+    color: white;
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #00bfff;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a{
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover{
+    color: #00bfff;
+    transform: translateY(-2px);
+    filter: drop-shadow(
+        0 0 8px rgba(0, 191, 255, 0.8)
+    );
 }

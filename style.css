@@ -53,3 +53,21 @@ body {
         0 0 8px rgba(0, 191, 255, 0.8)
     );
 }
+
+.sr-only {
+    position: absolute;
+    left: -9999px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    color: white
+}
+
+.hero span {
+    color: #00bfff;
+    text-shadow: 
+        0 0 5px #00bfff
+        0 0 15px #00bfff
+    ;
+}

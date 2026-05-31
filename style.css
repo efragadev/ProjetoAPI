@@ -23,7 +23,10 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px 40px;
-    margin: 5px;
+}
+
+.logo a{
+    text-decoration: none;
 }
 
 .logo h1 {
@@ -61,13 +64,63 @@ body {
 
 .hero h1 {
     font-size: clamp(2.5rem, 5vw, 5rem);
-    color: white
+    color: white;
+    text-transform: uppercase;
 }
 
 .hero span {
     color: #00bfff;
     text-shadow: 
-        0 0 5px #00bfff
+        0 0 5px #00bfff,
         0 0 15px #00bfff
     ;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 70vh;
+    padding: 20px;
+}
+
+.hero p {
+    color: #b0b0b0;
+    max-width: 700px;
+    margin-top: 15px;
+    line-height: 1.6;
+    font-size: 1.5rem;
+}
+
+.busca-jogo {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.busca-jogo input{
+    width: 450px;
+    padding: 15px;
+    border: 1px solid rgba(0, 191, 255,  0.2);
+    border-radius: 10px;
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+.busca-jogo button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #00bfff;
+    color: #050505;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.busca-jogo button:hover {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
 }

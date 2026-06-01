@@ -10,14 +10,15 @@
 
 body {
     min-height: 100vh;
+    font-family: var(--font);
     background-color: #050505;
-    background-image: 
-        linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px), 
+    background-image:
+        linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 191, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
-    font-family: var(--font);
 }
 
+/* HEADER */
 .header {
     display: flex;
     align-items: center;
@@ -25,13 +26,13 @@ body {
     padding: 20px 40px;
 }
 
-.logo a{
+.logo a {
     text-decoration: none;
 }
 
 .logo h1 {
     color: white;
-    font-size: 2em;
+    font-size: 2rem;
     letter-spacing: 2px;
 }
 
@@ -44,68 +45,133 @@ body {
     gap: 20px;
 }
 
-.social-links a{
+.social-links a {
     color: white;
-    transition: all 0.3s ease;
+    transition: all .3s ease;
 }
 
-.social-links a:hover{
+.social-links a:hover {
     color: #00bfff;
     transform: translateY(-2px);
-    filter: drop-shadow(
-        0 0 8px rgba(0, 191, 255, 0.8)
-    );
+    filter:
+        drop-shadow(
+            0 0 8px rgba(0, 191, 255, .8)
+        );
 }
 
+/* ACESSIBILIDADE */
 .sr-only {
     position: absolute;
     left: -9999px;
 }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    color: white;
-    text-transform: uppercase;
-}
-
-.hero span {
-    color: #00bfff;
-    text-shadow: 
-        0 0 5px #00bfff,
-        0 0 15px #00bfff
-    ;
-}
-
-.hero {
+/* HERO CAROUSEL */
+.hero-carousel {
+    min-height: 80vh;
+    margin: 20px;
+    border-radius: 20px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 70vh;
-    padding: 20px;
-    gap: 20px;
+    position: relative;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, .8),
+            rgba(0, 0, 0, .8)
+        ),
+        url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+    background-size: cover;
+    background-position: center;
+}
+.carousel-content {
+    max-width: 800px;
 }
 
-.hero p {
+.carousel-content h1 {
+    color: white;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    margin-bottom: 20px;
+}
+
+.carousel-content p {
     color: #b0b0b0;
-    max-width: 700px;
-    margin-top: 15px;
+    font-size: 1.2rem;
     line-height: 1.6;
-    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.carousel-content button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    background: #00bfff;
+    color: #050505;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.carousel-content button:hover {
+    box-shadow:
+        0 0 20px rgba(0, 191, 255, .6);
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.carousel-indicators span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #666;
+}
+
+.carousel-indicators .active {
+    background: #00bfff;
+}
+
+/* SEARCH SECTION */
+.search-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.section-header {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    color: white;
+    font-size: 2rem;
+}
+
+.section-header p {
+    color: #b0b0b0;
+    margin-top: 10px;
 }
 
 .busca-jogo {
     display: flex;
+    justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
     margin-top: 30px;
 }
 
-.busca-jogo input{
-    width: 450px;
+.busca-jogo input {
+    width: min(500px, 100%);
     padding: 15px;
-    border: 1px solid rgba(0, 191, 255,  0.2);
     border-radius: 10px;
+    border: 1px solid rgba(0, 191, 255, .2);
     background: #111827;
     color: white;
     outline: none;
@@ -125,14 +191,16 @@ body {
     color: #050505;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .busca-jogo button:hover {
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+    box-shadow:
+        0 0 20px rgba(0, 191, 255, .6);
 }
 
-.game-section {
+/* RESULTADOS */
+.games-section {
     padding: 60px 40px;
 }
 
@@ -145,7 +213,6 @@ body {
     margin-top: 30px;
 }
 
-
 .game-card {
     width: 500px;
     background: #111827;
@@ -157,7 +224,7 @@ body {
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 
+    box-shadow:
         0 0 20px rgba(0, 191, 255, .3);
 }
 
@@ -165,19 +232,17 @@ body {
     width: 100%;
     height: 350px;
     object-fit: cover;
-    max-width: 500px;
 }
 
 .game-info {
     padding: 20px;
-    font-family: var(--font);
 }
 
-.game-info h3{
+.game-info h3 {
     color: white;
 }
 
-.game-meta{
+.game-meta {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
@@ -192,23 +257,7 @@ body {
     border-radius: 8px;
     background: #00bfff;
     color: #050505;
-    cursor: pointer;
     font-family: var(--font);
     font-size: 1rem;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-header h2{
-    font-family: var(--font);
-    color: white;
-    font-size: 2rem;
-}
-
-.section-header p{
-    color: #b0b0b0;
-    margin-top: 10px;
+    cursor: pointer;
 }

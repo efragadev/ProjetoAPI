@@ -38,48 +38,116 @@
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Explore o universo dos <span>games.</span></h1>
-            <p>Pesquise milhares de jogos, veja avaliações, gêneros, plataformas e muito mais.</p>
 
-            <form class="busca-jogo">
-                <label for="jogo" class="sr-only">Nome do jogo</label>
-                <input id="jogo" type="text" placeholder="Pesquise um jogo">
-                <button type="submit">Buscar</button>
-            </form>
-        </section>
-        
-        <section class="games-section">
-            <div class="section-header">
-                <h2>Resultados</h2>
-                <p>Jogos encontrados</p>
-            </div>
+    <!-- CARROSSEL DE JOGOS POPULARES -->
+    <section class="hero-carousel">
 
-            <div class="game-container">
-                <!--Inserção dos cards via JavaScript-->
-                <article class="game-card">
-                    <img src="https://placehold.co/300x400" alt="Capa de jogo Elden Ring">
+        <div class="carousel-content">
 
-                    <div class="game-info">
-                        <h3>Elden Ring</h3>
+            <h1>Descubra os jogos mais populares</h1>
 
-                        <div class="game-meta">
-                            <span>⭐ 4.8</span>
-                            <span>2022</span>
-                        </div>
+            <p>
+                Explore lançamentos, jogos em alta
+                e encontre seu próximo game favorito.
+            </p>
 
-                        <p class="genre">
-                            Action RPG
-                        </p>
+            <button type="button">
+                Ver detalhes
+            </button>
 
-                        <button>
-                            Ver detalhes
-                        </button>
+        </div>
+
+        <div class="carousel-indicators">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </section>
+
+    <!-- BUSCA -->
+    <section class="search-section">
+
+        <div class="section-header">
+            <h2>Encontre qualquer jogo</h2>
+
+            <p>
+                Pesquise milhares de títulos utilizando
+                a base de dados da RAWG.
+            </p>
+        </div>
+
+        <form class="busca-jogo">
+
+            <label
+                for="jogo"
+                class="sr-only">
+                Nome do jogo
+            </label>
+
+            <input
+                id="jogo"
+                type="text"
+                placeholder="Digite o nome de um jogo">
+
+            <button type="submit">
+                Buscar
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="games-section">
+
+        <div class="section-header">
+
+            <h2>Resultados</h2>
+
+            <p>
+                Jogos encontrados
+            </p>
+
+        </div>
+
+        <div class="game-container">
+
+            <!-- Cards inseridos via JavaScript -->
+
+            <article class="game-card">
+
+                <img
+                    src="https://placehold.co/300x400"
+                    alt="Capa do jogo Elden Ring">
+
+                <div class="game-info">
+
+                    <h3>Elden Ring</h3>
+
+                    <div class="game-meta">
+                        <span>⭐ 4.8</span>
+                        <span>2022</span>
                     </div>
-                </article>
-            </div>
-        </section>
-    </main>
+
+                    <p class="genre">
+                        Action RPG
+                    </p>
+
+                    <button type="button">
+                        Ver detalhes
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</main>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,11 @@
 :root {
     --font: "Roboto Mono", monospace;
+    --background: #050505;
+    --surface: #111827;
+    --surface-strong: #172033;
+    --primary: #00bfff;
+    --text: #ffffff;
+    --muted: #b0b0b0;
 }
 
 * {
@@ -11,11 +17,15 @@
 body {
     min-height: 100vh;
     font-family: var(--font);
-    background-color: #050505;
+    background-color: var(--background);
     background-image:
         linear-gradient(rgba(0, 191, 255, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 191, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /* HEADER */
@@ -31,13 +41,13 @@ body {
 }
 
 .logo h1 {
-    color: white;
+    color: var(--text);
     font-size: 2rem;
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: #00bfff;
+    color: var(--primary);
 }
 
 .social-links {
@@ -46,12 +56,12 @@ body {
 }
 
 .social-links a {
-    color: white;
+    color: var(--text);
     transition: all .3s ease;
 }
 
 .social-links a:hover {
-    color: #00bfff;
+    color: var(--primary);
     transform: translateY(-2px);
     filter:
         drop-shadow(
@@ -86,37 +96,54 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 .carousel-content {
     max-width: 800px;
+    padding: 0 20px;
+    animation: fade-up .7s ease both;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
 }
 
 .carousel-content h1 {
-    color: white;
+    color: var(--text);
     font-size: clamp(2.5rem, 5vw, 5rem);
     margin-bottom: 20px;
 }
 
 .carousel-content p {
-    color: #b0b0b0;
+    color: var(--muted);
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
 }
 
-.carousel-content button {
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px 30px;
     border: none;
     border-radius: 10px;
-    background: #00bfff;
-    color: #050505;
+    background: var(--primary);
+    color: var(--background);
     font-weight: bold;
+    text-decoration: none;
     cursor: pointer;
     transition: .3s;
 }
 
-.carousel-content button:hover {
+.hero-button:hover {
     box-shadow:
         0 0 20px rgba(0, 191, 255, .6);
+    transform: translateY(-2px);
 }
 
 .carousel-indicators {
@@ -134,7 +161,7 @@ body {
 }
 
 .carousel-indicators .active {
-    background: #00bfff;
+    background: var(--primary);
 }
 
 /* SEARCH SECTION */
@@ -150,12 +177,12 @@ body {
 }
 
 .section-header h2 {
-    color: white;
+    color: var(--text);
     font-size: 2rem;
 }
 
 .section-header p {
-    color: #b0b0b0;
+    color: var(--muted);
     margin-top: 10px;
 }
 
@@ -172,13 +199,13 @@ body {
     padding: 15px;
     border-radius: 10px;
     border: 1px solid rgba(0, 191, 255, .2);
-    background: #111827;
-    color: white;
+    background: var(--surface);
+    color: var(--text);
     outline: none;
 }
 
 .busca-jogo input:focus {
-    border-color: #00bfff;
+    border-color: var(--primary);
     box-shadow:
         0 0 15px rgba(0, 191, 255, .3);
 }
@@ -187,8 +214,8 @@ body {
     padding: 15px 25px;
     border: none;
     border-radius: 10px;
-    background: #00bfff;
-    color: #050505;
+    background: var(--primary);
+    color: var(--background);
     font-weight: bold;
     cursor: pointer;
     transition: .3s;
@@ -214,12 +241,13 @@ body {
 }
 
 .game-card {
-    width: 500px;
-    background: #111827;
+    width: min(100%, 360px);
+    background: var(--surface);
     border: 1px solid rgba(0, 191, 255, .1);
     border-radius: 15px;
     overflow: hidden;
     transition: .3s;
+    animation: card-enter .45s ease both;
 }
 
 .game-card:hover {
@@ -239,7 +267,8 @@ body {
 }
 
 .game-info h3 {
-    color: white;
+    color: var(--text);
+    line-height: 1.3;
 }
 
 .game-meta {
@@ -249,15 +278,116 @@ body {
     color: #b0b0b0;
 }
 
+.genre {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.5;
+    margin-top: 16px;
+}
+
 .game-info button {
     width: 100%;
     margin-top: 32px;
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: #00bfff;
-    color: #050505;
+    background: var(--primary);
+    color: var(--background);
     font-family: var(--font);
     font-size: 1rem;
     cursor: pointer;
+}
+
+.empty-state,
+.loading-state,
+.error-state {
+    grid-column: 1 / -1;
+    width: min(100%, 560px);
+    padding: 28px;
+    border: 1px solid rgba(0, 191, 255, .16);
+    border-radius: 15px;
+    background: rgba(17, 24, 39, .86);
+    color: var(--muted);
+    text-align: center;
+    animation: fade-up .35s ease both;
+}
+
+.loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.loader {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(0, 191, 255, .2);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+}
+
+.error-state {
+    border-color: rgba(255, 99, 99, .35);
+    color: #ffb4b4;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 720px) {
+    .header {
+        padding: 18px 20px;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero-carousel {
+        min-height: 70vh;
+        margin: 12px;
+        border-radius: 15px;
+    }
+
+    .search-section,
+    .games-section {
+        padding: 52px 16px;
+    }
+
+    .busca-jogo button {
+        width: min(500px, 100%);
+    }
+
+    .game-card img {
+        height: 260px;
+    }
 }

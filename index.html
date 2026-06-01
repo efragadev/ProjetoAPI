@@ -40,45 +40,47 @@
     <main>
 
     <!-- CARROSSEL DE JOGOS POPULARES -->
-    <section class="hero-carousel">
+    <section class="hero-carousel" aria-labelledby="hero-title">
 
         <div class="carousel-content">
 
-            <h1>Descubra os jogos mais populares</h1>
+            <p class="eyebrow">EFRAGA Games</p>
+
+            <h1 id="hero-title">Descubra os jogos mais populares</h1>
 
             <p>
                 Explore lançamentos, jogos em alta
                 e encontre seu próximo game favorito.
             </p>
 
-            <button type="button">
-                Ver detalhes
-            </button>
+            <a class="hero-button" href="#busca">
+                Buscar jogos
+            </a>
 
         </div>
 
-        <div class="carousel-indicators">
-            <span class="active"></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="carousel-indicators" aria-label="Slides em destaque">
+            <span class="active" aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </div>
 
     </section>
 
     <!-- BUSCA -->
-    <section class="search-section">
+    <section class="search-section" id="busca" aria-labelledby="search-title">
 
         <div class="section-header">
-            <h2>Encontre qualquer jogo</h2>
+            <h2 id="search-title">Encontre qualquer jogo</h2>
 
             <p>
                 Pesquise milhares de títulos utilizando
-                a base de dados da RAWG.
+                a base de dados da RAWG pelo seu backend.
             </p>
         </div>
 
-        <form class="busca-jogo">
+        <form class="busca-jogo" autocomplete="off">
 
             <label
                 for="jogo"
@@ -89,6 +91,7 @@
             <input
                 id="jogo"
                 type="text"
+                name="search"
                 placeholder="Digite o nome de um jogo">
 
             <button type="submit">
@@ -100,48 +103,19 @@
     </section>
 
     <!-- RESULTADOS -->
-    <section class="games-section">
+    <section class="games-section" aria-labelledby="results-title">
 
         <div class="section-header">
 
-            <h2>Resultados</h2>
+            <h2 id="results-title">Resultados</h2>
 
-            <p>
-                Jogos encontrados
+            <p id="results-description">
+                Faça uma busca para ver os jogos encontrados.
             </p>
 
         </div>
 
-        <div class="game-container">
-
-            <!-- Cards inseridos via JavaScript -->
-
-            <article class="game-card">
-
-                <img
-                    src="https://placehold.co/300x400"
-                    alt="Capa do jogo Elden Ring">
-
-                <div class="game-info">
-
-                    <h3>Elden Ring</h3>
-
-                    <div class="game-meta">
-                        <span>⭐ 4.8</span>
-                        <span>2022</span>
-                    </div>
-
-                    <p class="genre">
-                        Action RPG
-                    </p>
-
-                    <button type="button">
-                        Ver detalhes
-                    </button>
-
-                </div>
-
-            </article>
+        <div class="game-container" aria-live="polite">
 
         </div>
 

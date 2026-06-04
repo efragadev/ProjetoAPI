@@ -77,7 +77,6 @@ html {
 
 /* HERO CAROUSEL */
 .hero-carousel {
-    --hero-image: url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
     min-height: 80vh;
     margin: 20px;
     border-radius: 20px;

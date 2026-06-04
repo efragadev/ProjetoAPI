@@ -4,8 +4,11 @@
   "private": true,
   "description": "Frontend de busca de jogos com backend seguro para proxy da RAWG.",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   },
   "engines": {
     "node": ">=18"

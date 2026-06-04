@@ -2,6 +2,18 @@ const form = document.querySelector(".busca-jogo");
 const input = document.querySelector("#jogo");
 const container = document.querySelector(".game-container");
 const resultsDescription = document.querySelector("#results-description");
+const heroCarousel = document.querySelector(".hero-carousel");
+const heroEyebrow = document.querySelector("#hero-eyebrow");
+const heroTitle = document.querySelector("#hero-title");
+const heroDescription = document.querySelector("#hero-description");
+const heroMeta = document.querySelector("#hero-meta");
+const heroIndicators = Array.from(document.querySelectorAll(".carousel-indicators button"));
+
+let featuredGames = [];
+let activeSlideIndex = 0;
+let carouselTimer;
+
+initHeroCarousel();
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -30,6 +42,96 @@ form.addEventListener("submit", async (event) => {
         resultsDescription.textContent = "A busca falhou. Verifique o backend e tente novamente.";
     }
 });
+
+async function initHeroCarousel() {
+    try {
+        const response = await fetch("/api/trending-games?page_size=4");
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Nao foi possivel carregar jogos em alta.");
+        }
+
+        featuredGames = (data.results || []).slice(0, 4);
+
+        if (!featuredGames.length) {
+            return;
+        }
+
+        syncHeroIndicators();
+        renderHeroSlide(0);
+        startCarousel();
+        heroIndicators.forEach((button, index) => {
+            button.addEventListener("click", () => {
+                renderHeroSlide(index);
+                startCarousel();
+            });
+        });
+    } catch (error) {
+        heroMeta.textContent = error.message;
+    }
+}
+
+function syncHeroIndicators() {
+    heroIndicators.forEach((button, index) => {
+        button.hidden = index >= featuredGames.length;
+    });
+}
+
+function startCarousel() {
+    window.clearInterval(carouselTimer);
+
+    carouselTimer = window.setInterval(() => {
+        const nextIndex = (activeSlideIndex + 1) % featuredGames.length;
+        renderHeroSlide(nextIndex);
+    }, 6000);
+}
+
+function renderHeroSlide(index) {
+    const game = featuredGames[index];
+
+    if (!game) {
+        return;
+    }
+
+    activeSlideIndex = index;
+    heroCarousel.classList.add("is-changing");
+
+    window.setTimeout(() => {
+        heroCarousel.style.setProperty("--hero-image", `url("${game.background_image}")`);
+        heroEyebrow.textContent = "Jogos do momento";
+        heroTitle.textContent = game.name;
+        heroDescription.textContent = createHeroDescription(game);
+        heroMeta.textContent = createHeroMeta(game);
+        updateHeroIndicators(index);
+        heroCarousel.classList.remove("is-changing");
+    }, 220);
+}
+
+function updateHeroIndicators(activeIndex) {
+    heroIndicators.forEach((button, index) => {
+        const isActive = index === activeIndex;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+}
+
+function createHeroDescription(game) {
+    const genres = game.genres?.slice(0, 2).join(" e ");
+
+    if (genres) {
+        return `${genres} em destaque agora na RAWG.`;
+    }
+
+    return "Um dos jogos em alta agora na RAWG.";
+}
+
+function createHeroMeta(game) {
+    const released = game.released ? formatDate(game.released) : "sem data";
+    const rating = Number.isFinite(game.rating) ? `nota ${game.rating.toFixed(1)}` : "sem nota";
+
+    return `${released} - ${rating}`;
+}
 
 function renderLoading() {
     resultsDescription.textContent = "Buscando jogos...";

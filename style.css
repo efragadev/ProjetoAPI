@@ -77,6 +77,7 @@ html {
 
 /* HERO CAROUSEL */
 .hero-carousel {
+    --hero-image: url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
     min-height: 80vh;
     margin: 20px;
     border-radius: 20px;
@@ -87,20 +88,56 @@ html {
     align-items: center;
     text-align: center;
     position: relative;
-    background:
+    isolation: isolate;
+    background: #050505;
+}
+
+.hero-carousel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
         linear-gradient(
-            rgba(0, 0, 0, .8),
-            rgba(0, 0, 0, .8)
+            rgba(0, 0, 0, .78),
+            rgba(0, 0, 0, .82)
         ),
-        url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+        var(--hero-image);
     background-size: cover;
     background-position: center;
+    transform: scale(1.02);
+    transition:
+        opacity .45s ease,
+        transform 6s ease;
+}
+
+.hero-carousel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(0, 191, 255, .2), transparent 34%),
+        linear-gradient(90deg, rgba(0, 0, 0, .8), transparent 45%, rgba(0, 0, 0, .75));
+}
+
+.hero-carousel.is-changing::before {
+    opacity: .35;
+    transform: scale(1.08);
 }
 
 .carousel-content {
     max-width: 800px;
     padding: 0 20px;
     animation: fade-up .7s ease both;
+    transition:
+        opacity .22s ease,
+        transform .22s ease;
+}
+
+.hero-carousel.is-changing .carousel-content {
+    opacity: .2;
+    transform: translateY(12px);
 }
 
 .eyebrow {
@@ -123,6 +160,15 @@ html {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
+}
+
+.hero-meta {
+    min-height: 22px;
+    color: var(--text);
+    font-size: .9rem;
+    font-weight: 700;
+    margin-top: -12px;
+    opacity: .86;
 }
 
 .hero-button {
@@ -153,14 +199,29 @@ html {
     gap: 10px;
 }
 
-.carousel-indicators span {
+.carousel-indicators button {
     width: 12px;
     height: 12px;
+    border: 0;
     border-radius: 50%;
     background: #666;
+    cursor: pointer;
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        width .25s ease;
+}
+
+.carousel-indicators button:hover,
+.carousel-indicators button:focus-visible {
+    background: var(--text);
+    outline: none;
+    transform: scale(1.15);
 }
 
 .carousel-indicators .active {
+    width: 34px;
+    border-radius: 999px;
     background: var(--primary);
 }
 
@@ -372,6 +433,16 @@ html {
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-carousel::before,
+    .carousel-content,
+    .carousel-indicators button,
+    .game-card {
+        transition: none;
+        animation: none;
     }
 }
 

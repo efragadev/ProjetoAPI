@@ -1,0 +1,13 @@
+{
+  "name": "efraga-games",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend de busca de jogos com backend seguro para proxy da RAWG.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

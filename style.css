@@ -16,6 +16,8 @@
 
 body {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     font-family: var(--font);
     background-color: var(--background);
     background-image:
@@ -26,6 +28,10 @@ body {
 
 html {
     scroll-behavior: smooth;
+}
+
+main {
+    flex: 1;
 }
 
 /* HEADER */
@@ -77,6 +83,7 @@ html {
 
 /* HERO CAROUSEL */
 .hero-carousel {
+    --hero-image: url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
     min-height: 80vh;
     margin: 20px;
     border-radius: 20px;
@@ -405,6 +412,33 @@ html {
     color: #ffb4b4;
 }
 
+/* FOOTER */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 28px 40px;
+    border-top: 1px solid rgba(0, 191, 255, .14);
+    color: var(--muted);
+    font-size: .9rem;
+    background: #172033;
+}
+
+.footer a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color .25s ease, text-shadow .25s ease;
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+    color: var(--text);
+    outline: none;
+    text-shadow: 0 0 12px rgba(0, 191, 255, .55);
+}
+
 @keyframes fade-up {
     from {
         opacity: 0;
@@ -475,5 +509,11 @@ html {
 
     .game-image-placeholder {
         height: 260px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 28px 20px;
     }
 }
